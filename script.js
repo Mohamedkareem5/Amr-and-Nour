@@ -53,18 +53,8 @@ window.scrollTo(0, 0);
         }
     }
 
-    // Force iOS Safari/Chrome to render the first frame of the video instead of a black screen
-    video.addEventListener('loadedmetadata', () => {
-        video.currentTime = 0.1;
-    });
-    if (video.readyState >= 1) {
-        video.currentTime = 0.1;
-    }
-
     playOverlay.addEventListener('click', () => {
         playOverlay.classList.add('hidden');
-        // Reset video to start when playing (since we seek to 0.1s initially)
-        video.currentTime = 0;
         video.play();
         
         // Safety fallback: trigger transition after 5.2s (since video action ends at 5.0s)
