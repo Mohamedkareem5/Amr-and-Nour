@@ -71,8 +71,9 @@
                 <span class="hero__divider-line"></span>
             </div>
 
-            <p class="hero__date hero__anim" data-delay="3">Thursday, the Twenty-Fifth of June</p>
-            <p class="hero__date hero__date--year hero__anim" data-delay="3">Two Thousand &amp; Twenty-Six</p>
+            <p class="hero__date hero__anim" data-delay="3">Thursday, 25 June 2026</p>
+            <p class="hero__date hero__anim" data-delay="3" style="margin-top: 10px;">National Police Museum</p>
+            <p class="hero__date hero__anim" data-delay="3" style="padding-left: 36px; margin-top: -2px; font-size: 0.65rem; opacity: 0.85;">Courtyard</p>
 
             <div class="hero__scroll-hint hero__anim" data-delay="4">
                 <div class="hero__scroll-mouse">
@@ -148,7 +149,7 @@
                         </svg>
                     </div>
                     <div class="timeline__content">
-                        <span class="timeline__time">7:00 PM</span>
+                        <span class="timeline__time">8:00 PM</span>
                         <h3 class="timeline__event">Ceremony</h3>
                         <p class="timeline__desc">Join us as we exchange our vows in a heartfelt ceremony surrounded by loved ones.</p>
                     </div>
@@ -162,7 +163,7 @@
                         </svg>
                     </div>
                     <div class="timeline__content">
-                        <span class="timeline__time">8:00 PM</span>
+                        <span class="timeline__time">9:00 PM</span>
                         <h3 class="timeline__event">Cocktail Hour</h3>
                         <p class="timeline__desc">Enjoy refreshments and mingling as we prepare for the evening's festivities.</p>
                     </div>
@@ -179,7 +180,7 @@
                         </svg>
                     </div>
                     <div class="timeline__content">
-                        <span class="timeline__time">9:30 PM</span>
+                        <span class="timeline__time">10:30 PM</span>
                         <h3 class="timeline__event">Dinner</h3>
                         <p class="timeline__desc">A delicious multi-course meal prepared by our talented culinary team.</p>
                     </div>
@@ -193,7 +194,7 @@
                         </svg>
                     </div>
                     <div class="timeline__content">
-                        <span class="timeline__time">11:00 PM</span>
+                        <span class="timeline__time">12:00 AM</span>
                         <h3 class="timeline__event">Reception &amp; Party</h3>
                         <p class="timeline__desc">Dance the night away and celebrate with us under the stars!</p>
                     </div>
@@ -283,7 +284,7 @@
 
             <div class="venue__card scroll-reveal">
                 <div class="venue__image-wrapper">
-                    <img src="venue_photo.png" alt="Salah El Din Citadel" class="venue__image" loading="lazy">
+                    <img src="venue_photo.png" alt="National Police Museum Courtyard" class="venue__image" loading="lazy">
                     <div class="venue__image-overlay"></div>
                     <div class="venue__image-badge">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16" height="16">
@@ -293,7 +294,7 @@
                     </div>
                 </div>
                 <div class="venue__info">
-                    <h3 class="venue__name">Salah El Din Citadel</h3>
+                    <h3 class="venue__name">National Police Museum Courtyard</h3>
                     <p class="venue__address">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14">
                             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
@@ -307,14 +308,14 @@
                             <span class="venue__detail-icon">🕐</span>
                             <div>
                                 <span class="venue__detail-label">Ceremony Begins</span>
-                                <span class="venue__detail-value">7:00 PM</span>
+                                <span class="venue__detail-value">8:00 PM</span>
                             </div>
                         </div>
                         <div class="venue__detail">
                             <span class="venue__detail-icon">🌳</span>
                             <div>
                                 <span class="venue__detail-label">Setting</span>
-                                <span class="venue__detail-value">Salah El Din Citadel</span>
+                                <span class="venue__detail-value">National Police Museum Courtyard</span>
                             </div>
                         </div>
                         <div class="venue__detail">
@@ -412,64 +413,7 @@
         </div>
     </section>
 
-    <!-- ═══════════════════════════════════════════ -->
-    <!-- RSVP SECTION                                -->
-    <!-- ═══════════════════════════════════════════ -->
-    <section id="rsvp" class="section rsvp" aria-label="RSVP form">
-        <div class="section__inner">
-            <p class="section__label">Be Our Guest</p>
-            <h2 class="section__title">RSVP</h2>
-            <div class="section__title-line"></div>
 
-            <p class="rsvp__deadline scroll-reveal">
-                <span class="rsvp__deadline-icon">⏳</span>
-                Kindly respond by <strong>June 10, 2026</strong>
-            </p>
-
-            <form id="rsvp-form" class="rsvp__form scroll-reveal" novalidate>
-                <!-- Full Name -->
-                <div class="form-group">
-                    <label class="form-label" for="rsvp-name">Full Name</label>
-                    <input class="form-input" type="text" id="rsvp-name" name="name" placeholder="Enter your full name" required>
-                </div>
-
-                <!-- Attendance Toggle -->
-                <div class="form-group">
-                    <label class="form-label">Attendance</label>
-                    <div class="toggle-group" id="attendance-toggle">
-                        <button type="button" class="toggle-btn toggle-btn--active" data-value="attending">
-                            <span class="toggle-btn__icon">✓</span> Attending
-                        </button>
-                        <button type="button" class="toggle-btn" data-value="not-attending">
-                            <span class="toggle-btn__icon">✕</span> Not Attending
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Attending-only fields -->
-                <div id="attending-fields" class="attending-fields">
-                    <!-- Special Requests -->
-                    <div class="form-group">
-                        <label class="form-label" for="rsvp-notes">Special Requests</label>
-                        <textarea class="form-input form-textarea" id="rsvp-notes" name="notes" placeholder="Dietary restrictions, allergies, or any notes..." rows="3"></textarea>
-                    </div>
-                </div>
-
-                <!-- Submit -->
-                <button type="submit" class="btn-primary" id="rsvp-submit">
-                    <span class="btn-primary__text">Send RSVP</span>
-                    <span class="btn-primary__icon">→</span>
-                </button>
-            </form>
-
-            <!-- Success message (hidden by default) -->
-            <div id="rsvp-success" class="rsvp__success rsvp__success--hidden">
-                <div class="rsvp__success-icon">✓</div>
-                <h3 class="rsvp__success-title">Thank You!</h3>
-                <p class="rsvp__success-text">Your response has been recorded. We look forward to celebrating with you!</p>
-            </div>
-        </div>
-    </section>
 
     <!-- ═══════════════════════════════════════════ -->
     <!-- FOOTER                                      -->

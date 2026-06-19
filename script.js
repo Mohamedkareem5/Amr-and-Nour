@@ -155,46 +155,7 @@ window.scrollTo(0, 0);
 
 
 
-    // ═══════════════════════════════════════════
-    // RSVP FORM
-    // ═══════════════════════════════════════════
-    const rsvpForm = document.getElementById('rsvp-form');
-    const attendanceToggle = document.getElementById('attendance-toggle');
-    const attendingFields = document.getElementById('attending-fields');
-    const rsvpSuccess = document.getElementById('rsvp-success');
 
-    // Toggle helper
-    function setupToggle(container, callback) {
-        container.querySelectorAll('.toggle-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                container.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('toggle-btn--active'));
-                btn.classList.add('toggle-btn--active');
-                if (callback) callback(btn.dataset.value);
-            });
-        });
-    }
-
-    setupToggle(attendanceToggle, (val) => {
-        if (val === 'not-attending') {
-            attendingFields.classList.add('collapsed');
-        } else {
-            attendingFields.classList.remove('collapsed');
-        }
-    });
-
-    // RSVP submit
-    rsvpForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const name = document.getElementById('rsvp-name').value.trim();
-        if (!name) {
-            document.getElementById('rsvp-name').focus();
-            document.getElementById('rsvp-name').style.borderColor = '#e74c3c';
-            return;
-        }
-        rsvpForm.style.display = 'none';
-        rsvpSuccess.classList.remove('rsvp__success--hidden');
-        rsvpSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    });
 
     // ═══════════════════════════════════════════
     // GUESTBOOK
