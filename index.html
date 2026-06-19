@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="You are cordially invited to the wedding celebration of Amr &amp; Nour. Join us for a beautiful ceremony.">
+    <title>Amr &amp; Nour — Wedding Invitation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Montserrat:wght@200;300;400;500&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- VIDEO INTRO OVERLAY                         -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section id="video-intro" class="video-intro">
+        <video id="intro-video" preload="auto" playsinline muted>
+            <source src="gate_intro.mp4" type="video/mp4">
+        </video>
+
+        <!-- Press-me overlay (shown before play) -->
+        <div id="play-overlay" class="play-overlay">
+            <span class="play-overlay__tap-to-open">Tap to Open</span>
+        </div>
+    </section>
+
+
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- FLOATING MUSIC TOGGLE                       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <button id="music-toggle" class="music-toggle" aria-label="Toggle background music">
+        <svg class="music-toggle__icon music-toggle__icon--on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18V5l12-2v13"/>
+            <circle cx="6" cy="18" r="3"/>
+            <circle cx="18" cy="16" r="3"/>
+        </svg>
+        <svg class="music-toggle__icon music-toggle__icon--off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18V5l12-2v13"/>
+            <circle cx="6" cy="18" r="3"/>
+            <circle cx="18" cy="16" r="3"/>
+            <line x1="1" y1="1" x2="23" y2="23" stroke-width="2.5"/>
+        </svg>
+    </button>
+
+    <!-- Hidden audio element -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="Canon in D - Pachelbel.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- HERO SECTION                                -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section id="hero" class="hero" aria-label="Wedding hero section">
+        <div class="hero__overlay"></div>
+
+        <div class="hero__content">
+            <p class="hero__subtitle hero__anim" data-delay="0">We are getting married</p>
+
+            <div class="hero__names-wrapper hero__anim" data-delay="1">
+                <h1 class="hero__name hero__name--groom">Amr</h1>
+                <span class="hero__ampersand">&amp;</span>
+                <h1 class="hero__name hero__name--bride">Nour</h1>
+            </div>
+
+            <div class="hero__divider hero__anim" data-delay="2">
+                <span class="hero__divider-line"></span>
+                <span class="hero__divider-diamond">◆</span>
+                <span class="hero__divider-line"></span>
+            </div>
+
+            <p class="hero__date hero__anim" data-delay="3">Thursday, the Twenty-Fifth of June</p>
+            <p class="hero__date hero__date--year hero__anim" data-delay="3">Two Thousand &amp; Twenty-Six</p>
+
+            <div class="hero__scroll-hint hero__anim" data-delay="4">
+                <div class="hero__scroll-mouse">
+                    <div class="hero__scroll-dot"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- COUNTDOWN TIMER                             -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section id="countdown" class="section countdown" aria-label="Wedding countdown timer">
+        <div class="section__inner">
+            <h2 class="section__title">Save the Date</h2>
+
+            <div class="countdown__wrapper scroll-reveal">
+                <div class="countdown__ring-decoration">
+                    <div class="countdown__ring countdown__ring--outer"></div>
+                    <div class="countdown__ring countdown__ring--inner"></div>
+                </div>
+                <div class="countdown__grid" id="countdown-grid">
+                    <div class="countdown__unit scroll-reveal" data-delay="0">
+                        <div class="countdown__card">
+                            <span class="countdown__number" id="cd-days">00</span>
+                            <div class="countdown__shimmer"></div>
+                        </div>
+                        <span class="countdown__label">Days</span>
+                    </div>
+                    <div class="countdown__unit scroll-reveal" data-delay="1">
+                        <div class="countdown__card">
+                            <span class="countdown__number" id="cd-hours">00</span>
+                            <div class="countdown__shimmer"></div>
+                        </div>
+                        <span class="countdown__label">Hours</span>
+                    </div>
+                    <div class="countdown__unit scroll-reveal" data-delay="2">
+                        <div class="countdown__card">
+                            <span class="countdown__number" id="cd-minutes">00</span>
+                            <div class="countdown__shimmer"></div>
+                        </div>
+                        <span class="countdown__label">Minutes</span>
+                    </div>
+                    <div class="countdown__unit scroll-reveal" data-delay="3">
+                        <div class="countdown__card">
+                            <span class="countdown__number" id="cd-seconds">00</span>
+                            <div class="countdown__shimmer"></div>
+                        </div>
+                        <span class="countdown__label">Seconds</span>
+                    </div>
+                </div>
+                <p class="countdown__date-text scroll-reveal">June 25, 2026</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SCHEDULE / TIMELINE                         -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section id="schedule" class="section schedule" aria-label="Wedding schedule">
+        <div class="section__inner">
+            <p class="section__label">The Celebration</p>
+            <h2 class="section__title">Our Day</h2>
+            <div class="section__title-line"></div>
+
+            <div class="timeline">
+                <!-- Ceremony -->
+                <div class="timeline__item scroll-reveal" data-delay="0">
+                    <div class="timeline__dot">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                        </svg>
+                    </div>
+                    <div class="timeline__content">
+                        <span class="timeline__time">7:00 PM</span>
+                        <h3 class="timeline__event">Ceremony</h3>
+                        <p class="timeline__desc">Join us as we exchange our vows in a heartfelt ceremony surrounded by loved ones.</p>
+                    </div>
+                </div>
+
+                <!-- Cocktail Hour -->
+                <div class="timeline__item scroll-reveal" data-delay="1">
+                    <div class="timeline__dot">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M8 2L1 12h7v9l8-13h-7l7-8z" stroke-linejoin="round" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="timeline__content">
+                        <span class="timeline__time">8:00 PM</span>
+                        <h3 class="timeline__event">Cocktail Hour</h3>
+                        <p class="timeline__desc">Enjoy refreshments and mingling as we prepare for the evening's festivities.</p>
+                    </div>
+                </div>
+
+                <!-- Dinner -->
+                <div class="timeline__item scroll-reveal" data-delay="2">
+                    <div class="timeline__dot">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z" stroke-linecap="round" stroke-linejoin="round"/>
+                            <line x1="6" y1="1" x2="6" y2="4"/>
+                            <line x1="10" y1="1" x2="10" y2="4"/>
+                            <line x1="14" y1="1" x2="14" y2="4"/>
+                        </svg>
+                    </div>
+                    <div class="timeline__content">
+                        <span class="timeline__time">9:30 PM</span>
+                        <h3 class="timeline__event">Dinner</h3>
+                        <p class="timeline__desc">A delicious multi-course meal prepared by our talented culinary team.</p>
+                    </div>
+                </div>
+
+                <!-- Reception / Party -->
+                <div class="timeline__item scroll-reveal" data-delay="3">
+                    <div class="timeline__dot">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="timeline__content">
+                        <span class="timeline__time">11:00 PM</span>
+                        <h3 class="timeline__event">Reception &amp; Party</h3>
+                        <p class="timeline__desc">Dance the night away and celebrate with us under the stars!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- OUR STORY SECTION                           -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section id="our-story" class="section our-story" aria-label="Our Love Story">
+         <div class="section__inner">
+             <p class="section__label">Our Journey</p>
+             <h2 class="section__title">Our Story</h2>
+             <div class="section__title-line"></div>
+
+             <div class="story-timeline">
+                 <!-- Step 1 -->
+                 <div class="story-card scroll-reveal" data-delay="0">
+                     <div class="story-card__badge">How We Met</div>
+                     <p class="story-card__text">
+                         A simple beginning that sparked an everlasting connection. Two paths crossed, finding an instant comfort and a shared vision of the future.
+                     </p>
+                 </div>
+                 
+                 <!-- Step 2 -->
+                 <div class="story-card scroll-reveal" data-delay="1">
+                     <div class="story-card__badge">The Proposal</div>
+                     <p class="story-card__text">
+                         A quiet promise of forever. With hearts full of hope and love, we chose to stand by each other and walk hand in hand towards our new beginning.
+                     </p>
+                 </div>
+
+                 <!-- Step 3 -->
+                 <div class="story-card scroll-reveal" data-delay="2">
+                     <div class="story-card__badge">The Big Day</div>
+                     <p class="story-card__text">
+                         Celebrating our love at the historic Salah El Din Citadel. We look forward to creating unforgettable memories surrounded by our family and friends.
+                     </p>
+                 </div>
+             </div>
+         </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- DRESS CODE                                  -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section id="dresscode" class="section dresscode" aria-label="Dress code">
+        <div class="section__inner">
+            <p class="section__label">What to Wear</p>
+            <h2 class="section__title">Dress Code</h2>
+            <div class="section__title-line"></div>
+
+            <div class="dresscode__card scroll-reveal">
+                <div class="dresscode__badge">Formal Attire</div>
+                <p class="dresscode__text">
+                    We invite you to dress in your finest. Think floor-length gowns and dark suits or tuxedos.
+                </p>
+                <div class="dresscode__divider"></div>
+                <div class="dresscode__notes">
+                    <div class="dresscode__note">
+                        <span class="dresscode__note-icon">✦</span>
+                        <span>Please avoid wearing white or ivory</span>
+                    </div>
+                    <div class="dresscode__note">
+                        <span class="dresscode__note-icon">✦</span>
+                        <span>Outdoor-friendly shoes recommended</span>
+                    </div>
+                    <div class="dresscode__note">
+                        <span class="dresscode__note-icon">✦</span>
+                        <span>The ceremony will be partially outdoors</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- VENUE LOCATION                              -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section id="venue" class="section venue" aria-label="Venue location">
+        <div class="section__inner">
+            <p class="section__label">Where to Find Us</p>
+            <h2 class="section__title">The Venue</h2>
+            <div class="section__title-line"></div>
+
+            <div class="venue__card scroll-reveal">
+                <div class="venue__image-wrapper">
+                    <img src="venue_photo.png" alt="Salah El Din Citadel" class="venue__image" loading="lazy">
+                    <div class="venue__image-overlay"></div>
+                    <div class="venue__image-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16" height="16">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="venue__info">
+                    <h3 class="venue__name">Salah El Din Citadel</h3>
+                    <p class="venue__address">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        Mokattam Hills, Al Abageyah, El Khalifa, Cairo, Egypt
+                    </p>
+                    <div class="venue__divider"></div>
+                    <div class="venue__details">
+                        <div class="venue__detail">
+                            <span class="venue__detail-icon">🕐</span>
+                            <div>
+                                <span class="venue__detail-label">Ceremony Begins</span>
+                                <span class="venue__detail-value">7:00 PM</span>
+                            </div>
+                        </div>
+                        <div class="venue__detail">
+                            <span class="venue__detail-icon">🌳</span>
+                            <div>
+                                <span class="venue__detail-label">Setting</span>
+                                <span class="venue__detail-value">Salah El Din Citadel</span>
+                            </div>
+                        </div>
+                        <div class="venue__detail">
+                            <span class="venue__detail-icon">🅿️</span>
+                            <div>
+                                <span class="venue__detail-label">Parking</span>
+                                <span class="venue__detail-value">Citadel Parking Area Available</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://maps.app.goo.gl/wFSqR45oP8FnCJum6" target="_blank" rel="noopener noreferrer" class="venue__map-btn" id="venue-map-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18">
+                            <path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+                        </svg>
+                        <span>Open in Maps</span>
+                        <span class="venue__map-arrow">→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- GUESTBOOK                                   -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section id="guestbook" class="section guestbook" aria-label="Guestbook">
+        <div class="section__inner">
+            <p class="section__label">Leave a Note</p>
+            <h2 class="section__title">Guestbook</h2>
+            <div class="section__title-line"></div>
+
+            <form id="guestbook-form" class="guestbook__form scroll-reveal" novalidate>
+                <!-- Name -->
+                <div class="form-group">
+                    <label class="form-label" for="gb-name">Your Name</label>
+                    <input class="form-input" type="text" id="gb-name" name="gb_name" placeholder="Your name" required>
+                </div>
+
+                <!-- Message -->
+                <div class="form-group">
+                    <label class="form-label" for="gb-message">Your Message</label>
+                    <textarea class="form-input form-textarea" id="gb-message" name="gb_message" placeholder="Write your wishes for the couple..." rows="3" required></textarea>
+                </div>
+
+                <!-- Emoji Selector -->
+                <div class="form-group">
+                    <label class="form-label">Choose an Emoji</label>
+                    <div class="emoji-selector" id="emoji-selector">
+                        <button type="button" class="emoji-btn" data-emoji="❤️">❤️</button>
+                        <button type="button" class="emoji-btn" data-emoji="💍">💍</button>
+                        <button type="button" class="emoji-btn" data-emoji="✨">✨</button>
+                        <button type="button" class="emoji-btn" data-emoji="🕊️">🕊️</button>
+                        <button type="button" class="emoji-btn" data-emoji="🌸">🌸</button>
+                        <button type="button" class="emoji-btn" data-emoji="🥂">🥂</button>
+                    </div>
+                </div>
+
+                <!-- Color Selector -->
+                <div class="form-group">
+                    <label class="form-label">Message Color</label>
+                    <div class="color-selector" id="color-selector">
+                        <button type="button" class="color-btn" data-color="#e8a0b4" style="background:#e8a0b4" title="Pink"></button>
+                        <button type="button" class="color-btn" data-color="#c9a96e" style="background:#c9a96e" title="Gold"></button>
+                        <button type="button" class="color-btn" data-color="#7ec8e3" style="background:#7ec8e3" title="Sky Blue"></button>
+                        <button type="button" class="color-btn" data-color="#b8a9d9" style="background:#b8a9d9" title="Lavender"></button>
+                        <button type="button" class="color-btn" data-color="#8fd3b4" style="background:#8fd3b4" title="Mint"></button>
+                        <button type="button" class="color-btn" data-color="#f0977a" style="background:#f0977a" title="Coral"></button>
+                    </div>
+                </div>
+
+                <!-- Signature Canvas -->
+                <div class="form-group">
+                    <label class="form-label">Draw a Signature / Doodle</label>
+                    <div class="canvas-wrapper">
+                        <canvas id="signature-canvas" width="300" height="120"></canvas>
+                        <button type="button" class="canvas-clear" id="canvas-clear" title="Clear drawing">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+                                <polyline points="1 4 1 10 7 10"/>
+                                <path d="M3.51 15a9 9 0 105.64-11.36L1 10"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Submit -->
+                <button type="submit" class="btn-primary" id="gb-submit">
+                    <span class="btn-primary__text">Post Message</span>
+                    <span class="btn-primary__icon">✦</span>
+                </button>
+            </form>
+
+            <!-- Guestbook Messages -->
+            <div id="guestbook-messages" class="guestbook__messages"></div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- RSVP SECTION                                -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section id="rsvp" class="section rsvp" aria-label="RSVP form">
+        <div class="section__inner">
+            <p class="section__label">Be Our Guest</p>
+            <h2 class="section__title">RSVP</h2>
+            <div class="section__title-line"></div>
+
+            <p class="rsvp__deadline scroll-reveal">
+                <span class="rsvp__deadline-icon">⏳</span>
+                Kindly respond by <strong>June 10, 2026</strong>
+            </p>
+
+            <form id="rsvp-form" class="rsvp__form scroll-reveal" novalidate>
+                <!-- Full Name -->
+                <div class="form-group">
+                    <label class="form-label" for="rsvp-name">Full Name</label>
+                    <input class="form-input" type="text" id="rsvp-name" name="name" placeholder="Enter your full name" required>
+                </div>
+
+                <!-- Attendance Toggle -->
+                <div class="form-group">
+                    <label class="form-label">Attendance</label>
+                    <div class="toggle-group" id="attendance-toggle">
+                        <button type="button" class="toggle-btn toggle-btn--active" data-value="attending">
+                            <span class="toggle-btn__icon">✓</span> Attending
+                        </button>
+                        <button type="button" class="toggle-btn" data-value="not-attending">
+                            <span class="toggle-btn__icon">✕</span> Not Attending
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Attending-only fields -->
+                <div id="attending-fields" class="attending-fields">
+                    <!-- Special Requests -->
+                    <div class="form-group">
+                        <label class="form-label" for="rsvp-notes">Special Requests</label>
+                        <textarea class="form-input form-textarea" id="rsvp-notes" name="notes" placeholder="Dietary restrictions, allergies, or any notes..." rows="3"></textarea>
+                    </div>
+                </div>
+
+                <!-- Submit -->
+                <button type="submit" class="btn-primary" id="rsvp-submit">
+                    <span class="btn-primary__text">Send RSVP</span>
+                    <span class="btn-primary__icon">→</span>
+                </button>
+            </form>
+
+            <!-- Success message (hidden by default) -->
+            <div id="rsvp-success" class="rsvp__success rsvp__success--hidden">
+                <div class="rsvp__success-icon">✓</div>
+                <h3 class="rsvp__success-title">Thank You!</h3>
+                <p class="rsvp__success-text">Your response has been recorded. We look forward to celebrating with you!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- FOOTER                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <footer class="footer">
+        <div class="footer__inner">
+            <p class="footer__names">Amr <span class="footer__amp">&amp;</span> Nour</p>
+            <p class="footer__date">June 25, 2026</p>
+            <p class="footer__quote">"Two hearts, one love, one beautiful journey together."</p>
+        </div>
+    </footer>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>
