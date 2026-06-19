@@ -17,6 +17,11 @@ window.scrollTo(0, 0);
     const musicToggle     = document.getElementById('music-toggle');
     const bgMusic         = document.getElementById('bg-music');
 
+    // Supabase Configuration
+    const supabaseUrl = 'https://scsriauqtwqicudtzwrq.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNjc3JpYXVxdHdxaWN1ZHR6d3JxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE4ODA0MzUsImV4cCI6MjA5NzQ1NjQzNX0.b5d3ceCldrW8y1s-KtrcbQpIchFhaCSTfTtEoFvZOZc';
+    const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
 
     // ═══════════════════════════════════════════
     // VIDEO INTRO
@@ -241,8 +246,77 @@ window.scrollTo(0, 0);
         ctx.clearRect(0, 0, signatureCanvas.width, signatureCanvas.height);
     });
 
+    // Helper to escape HTML characters
+    function escapeHTML(str) {
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+    }
+
+    // Render guestbook card
+    function renderGuestbookCard(item, prepend) {
+        const cardColor = item.color || '#3a3632';
+        const card = document.createElement('div');
+        card.className = 'gb-card';
+        if (cardColor !== '#3a3632') {
+            card.style.setProperty('background', cardColor + '22', 'important');
+            card.style.setProperty('border-color', cardColor, 'important');
+        }
+
+        const headerDiv = document.createElement('div');
+        headerDiv.className = 'gb-card__header';
+        headerDiv.innerHTML = `<span class="gb-card__name">${escapeHTML(item.name)}</span><span class="gb-card__emoji">${item.emoji || '✨'}</span>`;
+
+        const msgP = document.createElement('p');
+        msgP.className = 'gb-card__message';
+        msgP.textContent = item.message;
+
+        card.appendChild(headerDiv);
+        card.appendChild(msgP);
+
+        if (item.signature) {
+            const sigDiv = document.createElement('div');
+            sigDiv.className = 'gb-card__signature';
+            const sigImg = document.createElement('img');
+            sigImg.src = item.signature;
+            sigImg.alt = 'Signature';
+            sigDiv.appendChild(sigImg);
+            card.appendChild(sigDiv);
+        }
+
+        if (prepend) {
+            gbMessages.insertBefore(card, gbMessages.firstChild);
+        } else {
+            gbMessages.appendChild(card);
+        }
+    }
+
+    // Fetch and display messages from Supabase
+    async function loadGuestbook() {
+        try {
+            const { data, error } = await _supabase
+                .from('guestbook')
+                .select('*')
+                .order('created_at', { ascending: false });
+
+            if (error) throw error;
+
+            gbMessages.innerHTML = '';
+            if (data && data.length > 0) {
+                data.forEach(item => {
+                    renderGuestbookCard(item, false);
+                });
+            }
+        } catch (err) {
+            console.error('Error loading guestbook:', err);
+        }
+    }
+
+    // Load guestbook items on startup
+    loadGuestbook();
+
     // Guestbook submit
-    gbForm.addEventListener('submit', (e) => {
+    gbForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const name = document.getElementById('gb-name').value.trim();
         const message = document.getElementById('gb-message').value.trim();
@@ -253,59 +327,51 @@ window.scrollTo(0, 0);
         }
 
         // Get signature image
-        const sigData = signatureCanvas.toDataURL('image/png');
         const hasDrawing = ctx.getImageData(0, 0, signatureCanvas.width, signatureCanvas.height).data.some((ch, i) => i % 4 === 3 && ch > 0);
+        const sigData = hasDrawing ? signatureCanvas.toDataURL('image/png') : null;
 
-        // Build card
-        const cardColor = selectedColor;
-        const card = document.createElement('div');
-        card.className = 'gb-card';
-        if (cardColor !== '#3a3632') {
-            card.style.setProperty('background', cardColor + '22', 'important');
-            card.style.setProperty('border-color', cardColor, 'important');
+        const submitBtn = document.getElementById('gb-submit');
+        const originalBtnText = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = 'Sending...';
+
+        const newItem = {
+            name: name,
+            message: message,
+            emoji: selectedEmoji || '✨',
+            color: selectedColor || '#3a3632',
+            signature: sigData
+        };
+
+        try {
+            const { error } = await _supabase
+                .from('guestbook')
+                .insert([newItem]);
+
+            if (error) throw error;
+
+            // Render card on screen
+            renderGuestbookCard(newItem, true);
+
+            // Reset form
+            gbForm.reset();
+            emojiSelector.querySelectorAll('.emoji-btn').forEach(b => b.classList.remove('emoji-btn--active'));
+            colorSelector.querySelectorAll('.color-btn').forEach(b => b.classList.remove('color-btn--active'));
+            selectedEmoji = '';
+            selectedColor = '#3a3632';
+            ctx.clearRect(0, 0, signatureCanvas.width, signatureCanvas.height);
+
+            // Scroll to the new card
+            const firstCard = gbMessages.firstChild;
+            if (firstCard) firstCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } catch (err) {
+            console.error('Error posting guestbook:', err);
+            alert('Failed to send message. Please try again.');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnText;
         }
-
-        const headerDiv = document.createElement('div');
-        headerDiv.className = 'gb-card__header';
-        headerDiv.innerHTML = `<span class="gb-card__name">${escapeHTML(name)}</span><span class="gb-card__emoji">${selectedEmoji || '✨'}</span>`;
-
-        const msgP = document.createElement('p');
-        msgP.className = 'gb-card__message';
-        msgP.textContent = message;
-
-        card.appendChild(headerDiv);
-        card.appendChild(msgP);
-
-        if (hasDrawing) {
-            const sigDiv = document.createElement('div');
-            sigDiv.className = 'gb-card__signature';
-            const sigImg = document.createElement('img');
-            sigImg.src = sigData;
-            sigImg.alt = 'Signature';
-            sigDiv.appendChild(sigImg);
-            card.appendChild(sigDiv);
-        }
-
-        // Prepend (newest first)
-        gbMessages.insertBefore(card, gbMessages.firstChild);
-
-        // Reset form
-        gbForm.reset();
-        emojiSelector.querySelectorAll('.emoji-btn').forEach(b => b.classList.remove('emoji-btn--active'));
-        colorSelector.querySelectorAll('.color-btn').forEach(b => b.classList.remove('color-btn--active'));
-        selectedEmoji = '';
-        selectedColor = '#3a3632';
-        ctx.clearRect(0, 0, signatureCanvas.width, signatureCanvas.height);
-
-        // Scroll to the new card
-        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
-
-    function escapeHTML(str) {
-        const div = document.createElement('div');
-        div.textContent = str;
-        return div.innerHTML;
-    }
 
     // ═══════════════════════════════════════════
     // COUNTDOWN TIMER
