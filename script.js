@@ -57,15 +57,15 @@ window.scrollTo(0, 0);
         playOverlay.classList.add('hidden');
         video.play();
         
-        // Safety fallback: trigger transition after 4.2s (since video action ends at 4.0s)
-        setTimeout(triggerTransition, 4200);
+        // Safety fallback: trigger transition after 5.2s (since video action ends at 5.0s)
+        setTimeout(triggerTransition, 5200);
     });
 
     video.addEventListener('ended', triggerTransition);
 
-    // Trigger transition as soon as the video reaches 4.0s to avoid the freeze frame tail
+    // Trigger transition as soon as the video reaches 5.0s to avoid the freeze frame tail
     video.addEventListener('timeupdate', () => {
-        if (video.currentTime >= 4.0) {
+        if (video.currentTime >= 5.0) {
             triggerTransition();
         }
     });
